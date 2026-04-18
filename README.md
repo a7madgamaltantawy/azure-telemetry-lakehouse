@@ -1,3 +1,5 @@
+
+
 # Azure Telemetry Lakehouse
 
 ## Overview
@@ -41,3 +43,26 @@ azure-telemetry-lakehouse/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
+
+
+#This project simulates avionics-style telemetry pipelines using aircraft engine sensor data.
+
+#This project simulates avionics-style telemetry pipelines using aircraft engine sensor data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
