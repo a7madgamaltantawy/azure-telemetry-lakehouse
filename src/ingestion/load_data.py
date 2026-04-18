@@ -1,31 +1,40 @@
 import pandas as pd
 import os
 
-# Path setup
-RAW_DATA_PATH = "data/raw"
-FILE_NAME = "engine_data.csv"
+RAW_PATH = "data/raw"
+INPUT_FILE = os.path.join(RAW_PATH, "train_FD001.txt")  # أو الاسم الجديد
+OUTPUT_FILE = os.path.join(RAW_PATH, "engine_data.csv")
+
+COLUMNS = [
+    "unit_number", "cycle",
+    "setting_1", "setting_2", "setting_3",
+    *[f"sensor_{i}" for i in range(1, 22)]
+]
 
 def load_data():
-    print("Loading dataset...")
+    print("Loading telemetry-style engine data...")
 
-    # Example dataset (temporary dummy data if not downloaded yet)
-    data = {
-        "unit_number": [1, 1, 1, 2, 2],
-        "cycle": [1, 2, 3, 1, 2],
-        "sensor_1": [100, 98, 95, 102, 99],
-        "sensor_2": [200, 198, 190, 205, 202]
-    }
+    df = pd.read_csv(
+        INPUT_FILE,
+        sep=r"\s+",
+        header=None,
+        engine="python"
+    )
 
-    df = pd.DataFrame(data)
+    # remove empty columns لو موجودة
+    df = df.dropna(axis=1, how="all")
 
-    # Ensure directory exists
-    os.makedirs(RAW_DATA_PATH, exist_ok=True)
+    print(f"Raw shape: {df.shape}")
 
-    file_path = os.path.join(RAW_DATA_PATH, FILE_NAME)
+    df.columns = COLUMNS
 
-    df.to_csv(file_path, index=False)
+    # ترتيب مهم (telemetry style)
+    df = df.sort_values(by=["unit_number", "cycle"])
 
-    print(f"Data saved to {file_path}")
+    df.to_csv(OUTPUT_FILE, index=False)
+
+    print(f"Saved to: {OUTPUT_FILE}")
+    print(df.head())
 
 if __name__ == "__main__":
     load_data()
