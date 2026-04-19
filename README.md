@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates an end-to-end data engineering workflow inspired by avionics-style telemetry systems. It simulates how raw aircraft engine sensor data is ingested, structured, moved into cloud storage, and transformed into an analytics-ready dataset.
+This project simulates an avionics-style telemetry pipeline using public aircraft engine sensor data. I used Python to parse and transform raw telemetry-style records, Azure Blob Storage to organize raw and processed layers, and Azure Data Factory to orchestrate cloud-based data movement. The result is a structured dataset ready for health monitoring and predictive analytics.
 
 The project uses publicly available NASA CMAPSS aircraft engine sensor data and combines:
 - Azure Blob Storage for raw and processed layers
@@ -187,9 +187,7 @@ Run transformation:
 python src/transformation/transform_data.py
 ```
 
-## Example Interview Summary
 
-This project simulates an avionics-style telemetry pipeline using public aircraft engine sensor data. I used Python to parse and transform raw telemetry-style records, Azure Blob Storage to organize raw and processed layers, and Azure Data Factory to orchestrate cloud-based data movement. The result is a structured dataset ready for health monitoring and predictive analytics.
 
 ## Future Improvements
 
